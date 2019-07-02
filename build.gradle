@@ -16,6 +16,9 @@ buildscript {
 
 allprojects {
     addRepos(repositories)
+    repositories {
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+    }
 }
 
 task clean(type: Delete) {

@@ -1,2 +1,45 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.zkteam.ad"/>
+          package="com.bro.adlib" >
+
+    <application
+            android:allowBackup="true"
+            android:label="@string/app_name"
+            android:supportsRtl="true">
+
+        <!--腾讯广告-->
+        <service android:name="com.qq.e.comm.DownloadService" android:exported="false" />
+        <activity android:name="com.qq.e.ads.ADActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity android:name="com.qq.e.ads.PortraitADActivity" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity android:name="com.qq.e.ads.LandscapeADActivity" android:screenOrientation="landscape" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+
+        <!--targetSDKVersion >= 24时才需要添加这个 provider。provider 的 authorities 属性的值为 ${applicationId}.fileprovider，请开发者根据自己的 ${applicationId} 来设置这个值 -->
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="${applicationId}.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/gdt_file_path" />
+        </provider>
+
+        <!--百度 AD-->
+        <meta-data android:name="BaiduMobAd_APP_ID" android:value="e64ccf7d" />
+        <activity
+                android:name="com.baidu.mobads.AppActivity"
+                android:configChanges="keyboard|keyboardHidden|orientation"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <provider
+                android:name="com.baidu.mobads.openad.FileProvider"
+                android:authorities="cc.zkteam.juediqiusheng.bd.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/bd_file_paths" />
+        </provider>
+
+
+    </application>
+
+</manifest>
